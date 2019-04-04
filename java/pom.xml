@@ -2,9 +2,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xebia</groupId>
-    <artifactId>serverless-architecture-conference-2019-aws-lambda-java</artifactId>
+    <artifactId>ServerlessDDD</artifactId>
     <version>1.0.0</version>
-    <name>serverless-architecture-conference-2019-aws-lambda-java</name>
+    <name>ServerlessDDD</name>
     <packaging>jar</packaging>
 
     <dependencies>

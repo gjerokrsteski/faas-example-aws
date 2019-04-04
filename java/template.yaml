@@ -20,7 +20,7 @@ Resources:
     Properties:
       FunctionName: !Sub "sac2019-java-lambda-${Stage}"
       Handler: com.xebia.Lambda::handleRequest
-      CodeUri: target/serverless-architecture-conference-2019-aws-lambda-java-1.0.0.jar
+      CodeUri: target/ServerlessDDD-1.0.0.jar
       Description: FaaS handler for requesting a car entry
       MemorySize: 128
       ReservedConcurrentExecutions: 20

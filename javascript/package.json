@@ -1,5 +1,5 @@
 {
-  "name": "serverless-architecture-conference-2019-aws-lambda-javascript",
+  "name": "serverlessDDD",
   "version": "1.0.0",
   "description": "Example to use AWS lambda",
   "main": "index.js",
