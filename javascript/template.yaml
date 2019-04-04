@@ -38,7 +38,7 @@ Resources:
           Statement:
             - Effect: "Allow"
               Action:
-                - "dynamoDb:Query"
+                - "dynamoDb:Scan"
               Resource:
                 !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/sac2019-js-ParkingGarage*'
   ParkingGarageRepository:
