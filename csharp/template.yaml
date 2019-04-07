@@ -1,11 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 
-Description: Insert description here
+Description: Serverless DDD
 
 Globals:
   Function:
-    Runtime: java8
+    Runtime: dotnetcore2.1
     Timeout: 60
 
 Parameters:
@@ -18,9 +18,9 @@ Resources:
   ParkingLambda:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: !Sub "sac2019-java-lambda-${Stage}"
-      Handler: com.xebia.Lambda::handleRequest
-      CodeUri: target/ServerlessDDD-1.0.0.jar
+      FunctionName: !Sub "sac2019-csharp-lambda-${Stage}"
+      Handler: Lambda::Lambda.Functions::Get
+      CodeUri: artifacts/ServerlessDDD-1.0.0.zip
       Description: FaaS handler for requesting a car entry
       MemorySize: 128
       ReservedConcurrentExecutions: 20
@@ -31,7 +31,7 @@ Resources:
         PostCarRequest:
           Type: Api
           Properties:
-            Path: /parking-garage-java
+            Path: /parking-garage-csharp
             Method: get
       Policies:
         - Version: "2012-10-17"
@@ -40,11 +40,11 @@ Resources:
               Action:
                 - "dynamoDb:Scan"
               Resource:
-                !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/sac2019-java-ParkingGarage*'
+                !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/sac2019-csharp-ParkingGarage*'
   ParkingGarageRepository:
     Type: 'AWS::DynamoDB::Table'
     Properties:
-      TableName: !Sub "sac2019-java-ParkingGarage-${Stage}"
+      TableName: !Sub "sac2019-csharp-ParkingGarage-${Stage}"
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
@@ -58,4 +58,4 @@ Resources:
 Outputs:
   ParkingGarageApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/parking-garage-java/"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/parking-garage-csharp/"
