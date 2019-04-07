@@ -37,15 +37,4 @@ public class Lambda implements RequestStreamHandler {
         writer.write(responseJson.toString());
         writer.close();
     }
-
-//    public ScanResult scan() {
-//        AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().build();
-//
-//        ScanRequest scanRequest = new ScanRequest()
-//                .withTableName(System.getenv("PARKING_GARAGE_TABLE_NAME"));
-//
-//        return client.scan(scanRequest);
-//    }
-
-
 }
