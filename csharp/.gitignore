@@ -345,3 +345,4 @@ healthchecksdb
 MigrationBackup/
 
 artifacts
+packaged.yaml
