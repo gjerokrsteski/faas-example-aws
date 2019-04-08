@@ -11,8 +11,10 @@ dotnet test
 rm -rf artifacts
 dotnet publish src/Lambda/Lambda.csproj -o ../../artifacts/Lambda
 
-zip -r -X ./artifacts/ServerlessDDD-1.0.0.zip ./artifacts/Lambda
+cd ./artifacts
+zip -r -X ServerlessDDD-1.0.0.zip Lambda/
 
+cd ..
 aws cloudformation package --region ${AWS_REGION} --template-file template.yaml --s3-bucket ${aws_s3_bucket} --s3-prefix ${aws_stage} --output-template-file packaged.yaml
 aws cloudformation deploy --region ${AWS_REGION} --template-file ./packaged.yaml --stack-name sac2019-csharp-${aws_stage} --parameter-overrides Stage=${aws_stage} --capabilities CAPABILITY_IAM
 
