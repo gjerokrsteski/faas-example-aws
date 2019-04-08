@@ -3,7 +3,7 @@ set -e -u
 
 export AWS_REGION="eu-west-1"
 export aws_stage="kb-local"
-export aws_s3_bucket="bassie.cf.sac2019"
+export aws_s3_bucket="baasie.cf.sac2019"
 
 dotnet build
 dotnet test
