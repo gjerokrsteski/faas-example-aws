@@ -20,7 +20,7 @@ Resources:
     Properties:
       FunctionName: !Sub "node-js-faas-lambda-${Stage}"
       Handler: lambda.handle
-      CodeUri: dist/
+      CodeUri: ./dist/
       Description: FaaS handler for requesting a car entry
       MemorySize: 128
       ReservedConcurrentExecutions: 20

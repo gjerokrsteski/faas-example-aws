@@ -17,7 +17,7 @@ Resources:
       FunctionName:
         Fn::Sub: node-js-faas-lambda-${Stage}
       Handler: lambda.handle
-      CodeUri: s3://serverless-ddd-workshop/gjero-local/756f35f8c7360895d502417a02456fb1
+      CodeUri: s3://nodejs-faas-exsample/gjero-local/713be9a8b2944583e84d2161e37dc05a
       Description: FaaS handler for requesting a car entry
       MemorySize: 128
       ReservedConcurrentExecutions: 20
@@ -32,38 +32,24 @@ Resources:
             Path: /parking-garage-js
             Method: get
       Policies:
-        - Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Action:
-                - dynamoDb:Scan
-              Resource:
-                Fn::Sub: arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/node-js-faas-ParkingGarage*
+      - Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - dynamoDb:Scan
+          Resource:
+            Fn::Sub: arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/node-js-faas-ParkingGarage*
   ParkingGarageRepository:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName:
         Fn::Sub: node-js-faas-ParkingGarage-${Stage}
       AttributeDefinitions:
-        - AttributeName: localdate
-          AttributeType: S
+      - AttributeName: id
+        AttributeType: S
       KeySchema:
-        - AttributeName: localdate
-          KeyType: HASH
-      ProvisionedThroughput:
-        ReadCapacityUnits: 5
-        WriteCapacityUnits: 5
-  LicenseplateRepository:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName:
-        Fn::Sub: node-js-faas-Licenseplate-${Stage}
-      AttributeDefinitions:
-        - AttributeName: license
-          AttributeType: S
-      KeySchema:
-        - AttributeName: license
-          KeyType: HASH
+      - AttributeName: id
+        KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
