@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e -u
+set -e
 
 export AWS_REGION="eu-west-1"
 export aws_stage="gjero-local"
@@ -11,3 +11,5 @@ aws cloudformation package --region ${AWS_REGION} --template-file template.yaml 
 aws cloudformation deploy --region ${AWS_REGION} --template-file ./packaged.yaml --stack-name node-js-faas-${aws_stage} --parameter-overrides Stage=${aws_stage} --capabilities CAPABILITY_IAM
 
 echo $(aws cloudformation describe-stacks --stack-name node-js-faas-$aws_stage --query 'Stacks[0].Outputs[?OutputKey==`ParkingGarageApi`].OutputValue' --output text)
+
+
