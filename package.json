@@ -1,0 +1,31 @@
+{
+  "name": "nodejs-faas-exsample",
+  "version": "0.1.0",
+  "description": "Example to use AWS lambda",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "clean": "rimraf dist coverage",
+    "test": "jest",
+    "cloud": "./scripts/build-deploy.sh",
+    "cloud:destroy": "./scripts/destroy.sh && npm run clean"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.364.0",
+    "tiny-types": "^1.12.1"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.18",
+    "@types/jest": "^23.1.2",
+    "@types/node": "^10.3.6",
+    "jest": "~24.7.1",
+    "rimraf": "^2.6.2",
+    "ts-jest": "~24.0.2",
+    "ts-loader": "4.4.2",
+    "tslint": "5.9.1",
+    "typescript": "3.0.1",
+    "webpack": "4.16.5",
+    "webpack-cli": "^3.1.0"
+  }
+}
