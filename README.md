@@ -1,5 +1,7 @@
 # FaaS Example For AWS
 
+This example code is no production code and should be used for training purposes only!
+
 ## Prerequisites
 * AWS Account `https://aws.amazon.com`
 * AWS CLI `https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html`
