@@ -1,1 +1,32 @@
-.DS_Store
+!*/.gitkeep
+
+# nodejs specific
+node_modules
+npm-debug.log
+
+# editor
+.vscode
+.idea
+
+# service specific
+apiState.json
+coverage/
+pidfile
+test-pidfile
+/production/*
+*.log
+logs/*
+tmp/*
+/coverage/*
+/tmp/*
+.env
+
+.swagger-codegen/
+.swagger-codegen-ignore
+
+_fixtures/new-*.json
+_fixtures/test-*.json
+
+tools/*.json
+tools/*.md
+

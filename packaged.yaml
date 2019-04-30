@@ -1,0 +1,74 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Insert description here
+Globals:
+  Function:
+    Runtime: nodejs8.10
+    Timeout: 60
+Parameters:
+  Stage:
+    Type: String
+    Default: local
+    Description: Parameterize the stage of the deployment
+Resources:
+  ParkingLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName:
+        Fn::Sub: node-js-faas-lambda-${Stage}
+      Handler: lambda.handle
+      CodeUri: s3://serverless-ddd-workshop/gjero-local/756f35f8c7360895d502417a02456fb1
+      Description: FaaS handler for requesting a car entry
+      MemorySize: 128
+      ReservedConcurrentExecutions: 20
+      Environment:
+        Variables:
+          PARKING_GARAGE_TABLE_NAME:
+            Ref: ParkingGarageRepository
+      Events:
+        PostCarRequest:
+          Type: Api
+          Properties:
+            Path: /parking-garage-js
+            Method: get
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - dynamoDb:Scan
+              Resource:
+                Fn::Sub: arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/node-js-faas-ParkingGarage*
+  ParkingGarageRepository:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName:
+        Fn::Sub: node-js-faas-ParkingGarage-${Stage}
+      AttributeDefinitions:
+        - AttributeName: localdate
+          AttributeType: S
+      KeySchema:
+        - AttributeName: localdate
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+  LicenseplateRepository:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName:
+        Fn::Sub: node-js-faas-Licenseplate-${Stage}
+      AttributeDefinitions:
+        - AttributeName: license
+          AttributeType: S
+      KeySchema:
+        - AttributeName: license
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+Outputs:
+  ParkingGarageApi:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/parking-garage-js/

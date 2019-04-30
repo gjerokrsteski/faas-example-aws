@@ -1,0 +1,17 @@
+################################################################################
+# Definition for handling files
+# for more detailes see
+# * https://help.github.com/articles/dealing-with-line-endings/#platform-linux
+# * https://git-scm.com/docs/gitattributes
+################################################################################
+.gitattributes  text eol=lf
+.gitignore      text eol=lf
+
+# Unix shell scripts
+*.sh text eol=lf
+
+# Unix shell scripts
+*.yaml text eol=lf
+
+# Powershell scripts
+*.ps text eol=crlf
