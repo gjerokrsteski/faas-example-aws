@@ -11,7 +11,6 @@
     "cloud": "./scripts/build-deploy.sh",
     "cloud:destroy": "./scripts/destroy.sh && npm run clean"
   },
-  "author": "Gjero Krsteski <g.krsteski@enbw.com>",
   "dependencies": {
     "aws-sdk": "^2.364.0",
     "tiny-types": "^1.12.1"
