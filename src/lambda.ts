@@ -3,18 +3,17 @@ import {DynamoDB} from 'aws-sdk';
 import {resolveTableName} from "./properties";
 
 const PARKING_CAPACITY: number = 200;
+const documentClient: DynamoDB.DocumentClient = new DynamoDB.DocumentClient();
 
-//FUNCTION
 export function handle(event: APIGatewayEvent, context: Context, callback: Callback) {
 
     numberOfParkedCars()
         .then(
             numberOfParkedCars => {
-                let numberOfAvailableParkingSpots = PARKING_CAPACITY - numberOfParkedCars;
-                let response = {
-                    'numberOfAvailableParkingSpots': numberOfAvailableParkingSpots
+                let body = {
+                    'numberOfAvailableParkingSpots': (PARKING_CAPACITY - numberOfParkedCars)
                 };
-                callback(null, Response.OK(JSON.stringify(response)));
+                callback(null, Response.OK(JSON.stringify(body)));
             },
             err => {
                 console.error(err);
@@ -25,21 +24,14 @@ export function handle(event: APIGatewayEvent, context: Context, callback: Callb
 
 class Response {
     private headers = {};
-
     constructor(public readonly statusCode: number, public readonly body: string) {
-
     }
-
     public static OK = (body: any) => new Response(200, body);
-
     public static INTERNAL_SERVER_ERROR = () => new Response(500, "{ 'Error' : 'Internal Server Error' }");
 }
 
-const documentClient: DynamoDB.DocumentClient = new DynamoDB.DocumentClient();
-
 async function numberOfParkedCars(): Promise<number> {
     const tableName = await resolveTableName();
-
     const scanInput: DynamoDB.DocumentClient.ScanInput = {
         TableName: tableName,
     };
@@ -48,6 +40,4 @@ async function numberOfParkedCars(): Promise<number> {
         data => Promise.resolve(data.Count as number),
         err => Promise.reject(err)
     );
-
 }
-

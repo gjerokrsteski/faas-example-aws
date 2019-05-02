@@ -27,14 +27,18 @@ jest.mock('aws-sdk', () => ({
 }));
 
 describe('test lambda', () => {
-    it('should return 157', done => {
+    it('should return 157 if '+mockCount+' are occupied', done => {
         handle(EMPTY_BODY as APIGatewayEvent, EMPTY_CONTEXT, (err, data) => {
             console.log(data);
+
             expect(err).toBeNull();
             expect(data).toBeDefined();
             expect(data.statusCode).toBe(200);
+
             let body = JSON.parse(data.body);
+
             expect(body.numberOfAvailableParkingSpots).toBe(157);
+
             done();
         });
     });
