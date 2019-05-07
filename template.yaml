@@ -6,7 +6,7 @@ Description: Insert description here
 Globals:
   Function:
     Runtime: nodejs8.10
-    Timeout: 60
+    Timeout: 10
 
 Parameters:
   Stage:
@@ -23,7 +23,7 @@ Resources:
       CodeUri: ./dist/
       Description: FaaS handler for requesting a car entry
       MemorySize: 128
-      ReservedConcurrentExecutions: 20
+      ReservedConcurrentExecutions: 5
       Environment:
         Variables:
           PARKING_GARAGE_TABLE_NAME: !Ref 'ParkingGarageRepository'
