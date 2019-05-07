@@ -1,4 +1,4 @@
-# FaaS Example For AWS
+# FaaS Example For AWS [![Build Status](https://travis-ci.org/gjerokrsteski/faas-example-aws.svg?branch=master)](https://travis-ci.org/gjerokrsteski/faas-example-aws)
 
 This example code is no production code and should be used for training purposes only!
 
