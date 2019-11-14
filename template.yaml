@@ -5,7 +5,7 @@ Description: Insert description here
 
 Globals:
   Function:
-    Runtime: nodejs8.10
+    Runtime: nodejs10
     Timeout: 10
 
 Parameters:
