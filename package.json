@@ -12,10 +12,12 @@
     "cloud:destroy": "./scripts/destroy.sh && npm run clean"
   },
   "dependencies": {
+    "set-value": ">=2.0.1",
     "aws-sdk": "~2.497.0",
     "tiny-types": "^1.12.1"
   },
   "devDependencies": {
+    "set-value": ">=2.0.1",
     "@types/aws-lambda": "~8.10.35",
     "@types/jest": "^23.1.2",
     "@types/node": "~10.14.22",
